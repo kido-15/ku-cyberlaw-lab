@@ -42,7 +42,7 @@ a:hover { color: var(--crimson); text-decoration-color: currentColor; }
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
 .muted { color: var(--muted); }
 
-.skip-link { position: absolute; left: 16px; top: -40px; z-index: 100; padding: 6px 12px; background: var(--ink); color: #fff; }
+.skip-link { position: absolute; left: 16px; top: -100px; z-index: 100; padding: 6px 12px; background: var(--ink); color: #fff; }
 .skip-link:focus { top: 12px; }
 
 /* Header ----------------------------------------------------------------- */
@@ -226,6 +226,16 @@ html[lang="en"] .prof-name-en { display: none; }
   .pub-year { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .facts > div { grid-template-columns: 72px minmax(0, 1fr); }
   .footer-links { margin-left: 0; }
+}
+
+@media (max-width: 360px) {
+  .header-inner { gap: 8px; }
+  .brand { gap: 6px; }
+  .brand img { width: 24px; }
+  .brand-affil { font-size: 12px; }
+  .brand-name { font-size: 14.5px; letter-spacing: -0.01em; }
+  .lang-toggle { font-size: 14px; }
+  .menu-toggle { width: 36px; margin-right: -6px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

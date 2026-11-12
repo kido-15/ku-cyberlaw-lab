@@ -33,7 +33,7 @@
     "nav.contact": "Contact",
     "intro.affil": "Graduate School of Information Security, Korea University",
     "intro.title": "Cyber Law and Policy Lab",
-    "intro.lead": "We study the law and policy that govern cyberspace, and help draft and amend legislation so that research reaches actual policy.",
+    "intro.lead": "We study law and policy in cyberspace, with a focus on information security, personal data and cyber security, where changing technology keeps raising new legal questions.",
     "about.title": "About",
     "about.p1": "As the line between cyberspace and physical space blurs, malicious acts online now cause real physical, financial and psychological harm.",
     "about.p2": "Law keeps the state and society stable by setting out the rights, duties and responsibilities of everyone who acts in cyberspace. Laying the policy groundwork that lets society take up fast-moving technologies such as big data, the Internet of Things, AI and robotics, and blockchain is also a job for law.",

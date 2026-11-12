@@ -37,7 +37,7 @@
     "about.title": "About",
     "about.p1": "As the line between cyberspace and physical space blurs, malicious acts online now cause real physical, financial and psychological harm.",
     "about.p2": "Law keeps the state and society stable by setting out the rights, duties and responsibilities of everyone who acts in cyberspace. Laying the policy groundwork that lets society take up fast-moving technologies such as big data, the Internet of Things, AI and robotics, and blockchain is also a job for law.",
-    "about.p3": "The lab belongs to the Center for Cyber Security Policy. It runs joint research with government, public institutions, companies and policy institutes, and holds regular seminars for its members.",
+    "about.p3": "Our work covers cyber security and information security, personal data, cybercrime, e-government, data use, intellectual property, and the regulation of AI and other new technologies. We do joint research with government, public institutions, companies and research institutes, and members present and discuss their work at regular workshops.",
     "research.title": "Research areas",
     "prof.title": "Professor",
     "prof.name": "Hun Yeong Kwon",

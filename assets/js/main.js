@@ -24,6 +24,7 @@
   /* 영어 문구 (한국어 원문은 index.html에 있습니다) */
   var EN = {
     "skip": "Skip to content",
+    "brand.affil": "Graduate School of Information Security, Korea University",
     "brand.name": "Cyber Law and Policy Lab",
     "nav.about": "About",
     "nav.research": "Research",

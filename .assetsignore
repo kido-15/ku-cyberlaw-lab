@@ -1,0 +1,9 @@
+# 사이트에 올리지 않을 파일
+.git
+.gitignore
+.assetsignore
+.wrangler
+.DS_Store
+node_modules
+README.md
+wrangler.jsonc

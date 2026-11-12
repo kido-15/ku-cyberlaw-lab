@@ -1,0 +1,6 @@
+// Cloudflare 배포 설정. 사이트를 고친 뒤 `npx wrangler deploy` 한 번이면 반영됩니다.
+{
+  "name": "ku-cyberlaw",
+  "compatibility_date": "2026-11-10",
+  "assets": { "directory": "." }
+}

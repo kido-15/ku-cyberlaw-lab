@@ -32,11 +32,19 @@ python3 -m http.server 8000
 # 브라우저에서 http://localhost:8000
 ```
 
-## 배포 (GitHub Pages 예시)
+## 배포 주소
 
-1. GitHub에 저장소를 만들고 이 폴더를 push
-2. Settings → Pages → Branch: `main` / `/ (root)` 선택
-3. 몇 분 후 `https://<계정>.github.io/<저장소>/` 에서 확인
+- Cloudflare: https://ku-cyberlaw.kido6402.workers.dev
+- GitHub Pages: https://kido-15.github.io/ku-cyberlaw-lab/
+
+## 수정 후 다시 배포하기
+
+```bash
+git add -A && git commit -m "내용 수정" && git push   # GitHub Pages: 1~2분 뒤 자동 반영
+npx wrangler deploy                                  # Cloudflare: 바로 반영
+```
+
+Cloudflare에 올리지 않을 파일은 `.assetsignore`에 적혀 있습니다.
 
 ## 연구 성과 목록 기준 (2026-11-12 수집)
 

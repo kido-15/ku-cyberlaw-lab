@@ -136,15 +136,13 @@ html[lang="en"] .prof-name-en { display: none; }
 .heat tbody th { white-space: nowrap; }
 .heat td { width: 13%; text-align: center; }
 .heat .h0 { background: #f6f6f7; color: #a2a2aa; }
-.heat .h1, .sw.h1 { background: #f4e4e7; }
-.heat .h2, .sw.h2 { background: #e6bec5; }
-.heat .h3, .sw.h3 { background: #c97c88; }
-.heat .h4, .sw.h4 { background: var(--crimson); color: #fff; }
+.heat .h1 { background: #f4e4e7; }
+.heat .h2 { background: #e6bec5; }
+.heat .h3 { background: #c97c88; }
+.heat .h4 { background: var(--crimson); color: #fff; }
 .heat .heat-sum { font-weight: 600; }
 .heat tfoot th, .heat tfoot td { border-top: 1px solid var(--ink); color: var(--muted); }
 .heat tfoot .heat-sum { color: var(--ink); }
-.heat-legend { margin-top: 10px; font-size: 14px; color: var(--muted); }
-.sw { display: inline-block; width: 14px; height: 14px; margin: 0 4px 0 10px; vertical-align: -2px; }
 
 .net { position: relative; border: 1px solid var(--rule); background: var(--paper); }
 .net canvas { display: block; cursor: grab; }

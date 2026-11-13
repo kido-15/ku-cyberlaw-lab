@@ -212,9 +212,6 @@
       totals.map(function (n) { return "<td>" + n + "</td>"; }).join("") +
       '<td class="heat-sum">' + pubs.length + "</td></tr></tfoot></table>";
     $("heatWrap").innerHTML = h;
-    $("heatLegend").innerHTML = esc(ui("scale")) + " " + [["1–2", 1], ["3–5", 2], ["6–9", 3], ["10+", 4]].map(function (x) {
-      return '<span class="sw h' + x[1] + '"></span>' + x[0];
-    }).join(" ");
 
     var kc = {};
     pubs.forEach(function (p) { (p.kw || []).forEach(function (w) { kc[w] = (kc[w] || 0) + 1; }); });

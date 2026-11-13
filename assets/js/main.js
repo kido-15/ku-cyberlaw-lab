@@ -21,6 +21,51 @@
       en: ["Emerging technology", "Law and policy for big data, IoT, AI and robotics, and blockchain"] }
   ];
 
+  /* 연구 동향: 주제 코드 (data.js의 topics 값과 맞춤) */
+  var TOPICS = [
+    { id: "privacy",    ko: "개인정보와 프라이버시",     en: "Personal data and privacy" },
+    { id: "security",   ko: "정보보호와 사이버보안",     en: "Information security" },
+    { id: "crime",      ko: "사이버 범죄와 디지털 수사", en: "Cybercrime and digital investigation" },
+    { id: "ai",         ko: "인공지능과 신기술",         en: "AI and emerging technology" },
+    { id: "defense",    ko: "사이버 안보와 국방",        en: "Cyber security and defense" },
+    { id: "internet",   ko: "인터넷과 플랫폼 규제",      en: "Internet and platform regulation" },
+    { id: "blockchain", ko: "블록체인과 가상자산",       en: "Blockchain and virtual assets" },
+    { id: "data",       ko: "데이터와 공공정보",         en: "Data and public information" },
+    { id: "egov",       ko: "전자정부와 디지털 행정",    en: "E-government" },
+    { id: "industry",   ko: "산업과 소비자 규제",        en: "Industry and consumer regulation" }
+  ];
+  var PERIODS = [[2004, 2010], [2011, 2015], [2016, 2020], [2021, 2026]];
+
+  /* 시기별 흐름 (키워드는 data.js의 kw 값) */
+  var FLOW = [
+    { ko: ["전자정부와 개인정보보호법 입법", "전자정부와 행정정보 공유, 개인정보보호법 제정 논의처럼 정보화 법제의 기본 틀을 다뤘습니다."],
+      en: ["E-government and the data protection act", "Groundwork for information law: e-government, sharing of administrative information and the debate over a data protection act."],
+      kw: ["전자정부", "행정정보 공유", "개인정보보호법"] },
+    { ko: ["인터넷 규제와 공공데이터", "인터넷 규제와 표현의 자유, 게임 규제, 공공데이터 개방이 주로 다룬 주제입니다."],
+      en: ["Internet regulation and public data", "Internet regulation and free expression, game regulation, and opening up public data."],
+      kw: ["인터넷 규제", "표현의 자유", "공공데이터"] },
+    { ko: ["디지털 수사와 개인정보 책임", "디지털 증거 압수수색과 피압수자의 참여권, 개인정보 유출에 따른 손해배상과 과징금 연구가 많았습니다. GDPR과 가명정보, 비식별화도 이때 다루기 시작했습니다."],
+      en: ["Digital investigation and liability for data", "Search and seizure of digital evidence and the right to take part in it, and damages and fines after data breaches. GDPR, pseudonymised data and de-identification also appear here."],
+      kw: ["디지털 증거", "압수수색", "참여권", "개인정보 유출", "손해배상", "비식별화"] },
+    { ko: ["인공지능과 가상자산", "인공지능 규제와 윤리에서 시작해 AI 거버넌스, AI 보안, AI 에이전트로 넓어졌습니다. 가상자산과 블록체인 논문이 늘었고, 2024년부터는 토픽모델링 같은 데이터 분석 방법도 씁니다."],
+      en: ["AI and virtual assets", "From AI regulation and ethics to AI governance, AI security and AI agents. More work on virtual assets and blockchain, and since 2024 data-driven methods such as topic modeling."],
+      kw: ["인공지능 규제", "AI 거버넌스", "AI 에이전트", "가상자산", "블록체인", "토픽모델링"] }
+  ];
+
+  /* 키워드 영문 표기 (없으면 한국어 그대로 표시) */
+  var KW_EN = {
+    "디지털 증거": "digital evidence", "압수수색": "search and seizure", "개인정보보호": "data protection",
+    "손해배상": "damages", "개인정보보호법": "Personal Information Protection Act", "가상자산": "virtual assets",
+    "클라우드": "cloud", "비교법": "comparative law", "블록체인": "blockchain", "가명정보": "pseudonymised data",
+    "인공지능": "AI", "토픽모델링": "topic modeling", "해킹": "hacking", "금융보안": "financial security",
+    "사이버안보": "national cyber security", "참여권": "right to participate", "인공지능 윤리": "AI ethics",
+    "개인정보 유출": "data breaches", "인터넷 규제": "internet regulation", "전자정부": "e-government",
+    "행정정보 공유": "administrative information sharing", "표현의 자유": "freedom of expression",
+    "공공데이터": "public data", "비식별화": "de-identification", "인공지능 규제": "AI regulation",
+    "AI 거버넌스": "AI governance", "AI 에이전트": "AI agents", "과징금": "administrative fines",
+    "디지털 포렌식": "digital forensics", "사이버범죄": "cybercrime", "국제공조": "international cooperation"
+  };
+
   /* 영어 문구 (한국어 원문은 index.html에 있습니다) */
   var EN = {
     "skip": "Skip to content",
@@ -30,6 +75,7 @@
     "nav.research": "Research",
     "nav.professor": "Professor",
     "nav.members": "Members",
+    "nav.trends": "Trends",
     "nav.publications": "Publications",
     "nav.contact": "Contact",
     "intro.affil": "Graduate School of Information Security, Korea University",
@@ -50,6 +96,12 @@
     "prof.officeVal": "Room 304, Jung Woon-Oh IT Hall",
     "prof.tel": "Phone",
     "members.title": "Members",
+    "trends.title": "Research trends",
+    "trends.note": "134 KCI-indexed journal papers (2004–2026) for which Prof. Kwon is the corresponding author, grouped by topic from their author keywords. A paper can fall under two topics.",
+    "trends.heat": "Papers by topic",
+    "trends.flow": "How the work has shifted",
+    "trends.kw": "Frequent keywords",
+    "trends.kwHelp": "Select a keyword to see those papers under Publications below.",
     "pubs.title": "Publications",
     "pubs.note": "Papers for which Prof. Kwon is the corresponding author, and theses he supervised at Korea University.",
     "video.title": "Video",
@@ -73,6 +125,7 @@
       empty: "등록된 항목이 없습니다.", membersEmpty: "구성원 명단을 준비하고 있습니다.",
       coadvisor: "공동지도", search: "제목, 저자, 학술지, 연도로 검색",
       play: "소개영상 재생", menuOpen: "메뉴 열기", menuClose: "메뉴 닫기", toggle: "English",
+      topic: "주제", total: "합계", papers: "논문 수", unit: "편", scale: "논문 수",
       group: { researcher: "연구원", phd: "박사과정", ms: "석사과정", alumni: "졸업생" },
       title: "사이버법정책연구실 | 고려대학교 정보보호대학원"
     },
@@ -82,6 +135,7 @@
       empty: "Nothing listed yet.", membersEmpty: "The member list is being prepared.",
       coadvisor: "Co-advised", search: "Search titles, authors, journals or years",
       play: "Play the introduction video", menuOpen: "Open menu", menuClose: "Close menu", toggle: "한국어",
+      topic: "Topic", total: "Total", papers: "Papers", unit: "", scale: "Papers",
       group: { researcher: "Researchers", phd: "Ph.D. students", ms: "M.S. students", alumni: "Alumni" },
       title: "Cyber Law and Policy Lab | Korea University"
     }
@@ -133,11 +187,79 @@
     }).join("");
   }
 
+  /* Research trends ----------------------------------------------------- */
+  function kwLabel(w) { return lang === "en" && KW_EN[w] ? KW_EN[w] : w; }
+  function kwButton(w, n) {
+    return '<button type="button" class="kw" data-kw="' + esc(w) + '">' + esc(kwLabel(w)) +
+      (n ? '<span class="count">' + n + "</span>" : "") + "</button>";
+  }
+  function heatLevel(n) { return n === 0 ? 0 : n <= 2 ? 1 : n <= 5 ? 2 : n <= 9 ? 3 : 4; }
+
+  function renderTrends() {
+    var pubs = (DATA.publications || []).filter(function (p) { return p.topics && p.topics.length; });
+    $("trends").hidden = !pubs.length;
+    var link = document.querySelector('.nav a[href="#trends"]');
+    if (link) link.hidden = !pubs.length;
+    if (!pubs.length) return;
+
+    var pname = PERIODS.map(function (r) { return r[0] + "–" + r[1]; });
+    function per(y) { for (var i = 0; i < PERIODS.length; i++) if (y <= PERIODS[i][1]) return i; return PERIODS.length - 1; }
+
+    var rows = TOPICS.map(function (t) {
+      var c = PERIODS.map(function () { return 0; });
+      pubs.forEach(function (p) { if (p.topics.indexOf(t.id) !== -1) c[per(p.year)]++; });
+      return { t: t, c: c, sum: c.reduce(function (a, b) { return a + b; }, 0) };
+    }).filter(function (r) { return r.sum; }).sort(function (a, b) { return b.sum - a.sum; });
+    var totals = PERIODS.map(function () { return 0; });
+    pubs.forEach(function (p) { totals[per(p.year)]++; });
+
+    var unit = ui("unit");
+    var h = '<table class="heat"><thead><tr><th scope="col">' + esc(ui("topic")) + "</th>" +
+      pname.map(function (n) { return '<th scope="col">' + n.replace("–", "–<wbr>") + "</th>"; }).join("") +
+      '<th scope="col" class="heat-sum">' + esc(ui("total")) + "</th></tr></thead><tbody>";
+    rows.forEach(function (r) {
+      var name = r.t[lang] || r.t.ko;
+      h += '<tr><th scope="row">' + esc(name) + "</th>" + r.c.map(function (n, i) {
+        return '<td class="h' + heatLevel(n) + '" title="' + esc(name + ", " + pname[i] + ": " + n + unit) + '">' + (n || "–") + "</td>";
+      }).join("") + '<td class="heat-sum">' + r.sum + "</td></tr>";
+    });
+    h += '</tbody><tfoot><tr><th scope="row">' + esc(ui("papers")) + "</th>" +
+      totals.map(function (n) { return "<td>" + n + "</td>"; }).join("") +
+      '<td class="heat-sum">' + pubs.length + "</td></tr></tfoot></table>";
+    $("heatWrap").innerHTML = h;
+    $("heatLegend").innerHTML = esc(ui("scale")) + " " + [["1–2", 1], ["3–5", 2], ["6–9", 3], ["10+", 4]].map(function (x) {
+      return '<span class="sw h' + x[1] + '"></span>' + x[0];
+    }).join(" ");
+
+    $("trendFlow").innerHTML = FLOW.map(function (f, i) {
+      var t = f[lang] || f.ko;
+      return '<li><p class="flow-period">' + pname[i] + '<span class="count">' + totals[i] + (unit || " papers") + "</span></p>" +
+        '<div><p class="flow-head">' + esc(t[0]) + "</p><p>" + esc(t[1]) + '</p><p class="kw-row">' +
+        f.kw.map(function (w) { return kwButton(w); }).join("") + "</p></div></li>";
+    }).join("");
+
+    var kc = {};
+    pubs.forEach(function (p) { (p.kw || []).forEach(function (w) { kc[w] = (kc[w] || 0) + 1; }); });
+    var top = Object.keys(kc).sort(function (a, b) { return kc[b] - kc[a] || a.localeCompare(b, "ko"); }).slice(0, 20);
+    $("kwList").innerHTML = top.map(function (w) { return kwButton(w, kc[w]); }).join("");
+  }
+
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-kw]");
+    if (!b) return;
+    var w = kwLabel(b.getAttribute("data-kw"));
+    $("pubSearch").value = w;
+    query = w; filter = "all"; limit = PAGE;
+    renderPubs();
+    $("publications").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  });
+
   /* Publications -------------------------------------------------------- */
   function haystack(p) {
     var t = typeof p.title === "string" ? p.title : p.title.ko + " " + (p.title.en || "");
     var v = typeof p.venue === "string" ? p.venue : p.venue.ko + " " + p.venue.en;
-    return (t + " " + p.authors + " " + v + " " + p.year).toLowerCase();
+    var k = (p.kw || []).map(function (w) { return w + " " + (KW_EN[w] || ""); }).join(" ");
+    return (t + " " + p.authors + " " + v + " " + p.year + " " + k).toLowerCase();
   }
 
   function renderPubs() {
@@ -156,8 +278,19 @@
     }).join("");
 
     var q = query.trim().toLowerCase();
+    // 검색어가 키워드 이름과 정확히 같으면 그 키워드가 붙은 논문만 보여 줍니다
+    var kwHit = null;
+    all.some(function (p) {
+      return (p.kw || []).some(function (w) {
+        if (w.toLowerCase() === q || (KW_EN[w] || "").toLowerCase() === q) { kwHit = w; return true; }
+        return false;
+      });
+    });
     var shown = all.filter(function (p) {
-      return (filter === "all" || p.type === filter) && (!q || haystack(p).indexOf(q) !== -1);
+      if (filter !== "all" && p.type !== filter) return false;
+      if (!q) return true;
+      if (kwHit) return (p.kw || []).indexOf(kwHit) !== -1;
+      return haystack(p).indexOf(q) !== -1;
     });
     if (!shown.length) {
       $("pubList").innerHTML = '<p class="empty" style="padding-top:20px">' + esc(ui("noMatch")) + "</p>";
@@ -220,6 +353,7 @@
     document.title = ui("title");
     renderResearch();
     renderMembers();
+    renderTrends();
     renderPubs();
     try { localStorage.setItem("clp-lang", lang); } catch (_) {}
   }

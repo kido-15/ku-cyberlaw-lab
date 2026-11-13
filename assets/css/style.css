@@ -236,6 +236,9 @@ html[lang="en"] .prof-name-en { display: none; }
 .footer-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 24px 32px; }
 .footer-logo img { width: 144px; }
 .footer-text { line-height: 1.6; }
+.footer-contact { margin-top: 6px; font-size: 13px; color: var(--muted); }
+.footer-contact a { color: var(--muted); }
+.footer-contact a:hover { color: var(--crimson); }
 .footer-links { display: flex; gap: 20px; margin-left: auto; }
 .footer-links a { color: var(--muted); text-decoration: none; }
 .footer-links a:hover { color: var(--crimson); }

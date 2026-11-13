@@ -97,6 +97,7 @@
     "contact.map": "Map",
     "contact.naver": "Naver Map",
     "footer.name": "Cyber Law and Policy Lab, Graduate School of Information Security, Korea University",
+    "footer.contact": "Website edits and inquiries:",
     "footer.gsis": "Graduate School of Information Security",
     "footer.ku": "Korea University"
   };

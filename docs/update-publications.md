@@ -27,7 +27,12 @@
    - 저자 목록이 "외 N명"으로 잘려 있으면 상세 페이지의 저자 목록으로 확인합니다.
    - 요청 시 일반 브라우저 User-Agent와 `Referer: https://www.kci.go.kr/`를 붙이고, 요청 사이에 1초쯤 쉽니다.
 2. **OpenAlex (해외 학술지·학술대회)**
-   - `https://api.openalex.org/works?filter=author.id:A5004238826,from_publication_date=<작년 1월 1일, 예: 2025-01-01>&per-page=200`
+   - `https://api.openalex.org/works?filter=author.id:A5004238826|A5038200334,from_publication_date:<작년 1월 1일, 예: 2025-01-01>&per-page=200`
+     (필터 안에서 여러 값은 `|`로 잇고, 필터끼리는 `,`로 구분합니다. `from_publication_date`는 `=`가 아니라 `:`입니다.)
+   - OpenAlex는 키 없이 부르면 같은 IP를 쓰는 사람들과 하루 한도를 나눠 써서 "Rate limit exceeded"가 날 수 있습니다.
+     환경 변수 `OPENALEX_API_KEY`가 있으면 `&api_key=...`를 붙입니다. 한도에 걸리면 Crossref
+     (`https://api.crossref.org/works?query.author=Hun+Yeong+Kwon&filter=from-pub-date:<작년 1월 1일>&rows=100`)로 새 논문 후보만 찾고,
+     교신저자를 확인할 수 없으면 마지막 저자일 때만 `cor: "inferred"`로 넣습니다. 확인하지 못한 출처는 마지막 보고에 적습니다.
    - 권헌영 교수의 OpenAlex 저자 ID는 여러 개입니다: A5004238826(주), A5038200334, A5049917785, A5015495061, A5029088204, A5022977680, A5002159355, A5096766950, A5050627534, A5064957268, A5096388792, A5030938696.
    - `authorships[].is_corresponding`으로 교신저자를 확인합니다. KCI에도 있는 국내 논문(같은 제목)은 중복이므로 KCI 쪽만 둡니다.
 3. **RISS (학위논문)**

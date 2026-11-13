@@ -23,7 +23,7 @@ assets/img/            교수 사진, 고려대 엠블럼, KU시큐리티 로고
 | 교수님 사진 바꾸기 | `assets/img/professor.jpg` 교체 |
 | 연구 분야 문구 | `assets/js/main.js` 상단 `RESEARCH` |
 | 연구 동향 (표·키워드) | `assets/js/data.js`의 논문별 `topics`, `kw` 값으로 자동 계산 |
-| 연구 동향 시기별 설명 | `assets/js/main.js` → `FLOW`, 주제 이름은 `TOPICS`, 키워드 영문은 `KW_EN` |
+| 연구 동향 주제·키워드 이름 | `assets/js/main.js` → 주제 이름은 `TOPICS`, 키워드 영문은 `KW_EN` |
 | 영어 문구 | `assets/js/main.js` → `EN` |
 | 한국어 문구 | `index.html`의 해당 텍스트 |
 
@@ -36,8 +36,10 @@ python3 -m http.server 8000
 
 ## 배포 주소
 
-- Cloudflare: https://ku-cyberlaw.kido6402.workers.dev
-- GitHub Pages: https://kido-15.github.io/ku-cyberlaw-lab/
+- 대표 주소: https://ku-clplab.kr (가비아 도메인 → GitHub Pages)
+  - 가비아 DNS: A `@` → 185.199.108.153 / 109 / 110 / 111.153, CNAME `www` → `kido-15.github.io.`
+  - 저장소의 `CNAME` 파일이 이 도메인을 가리킵니다. 지우면 연결이 끊깁니다.
+- Cloudflare 사본: https://ku-cyberlaw.kido6402.workers.dev
 
 ## 수정 후 다시 배포하기
 

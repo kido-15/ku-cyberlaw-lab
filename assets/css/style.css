@@ -127,7 +127,7 @@ html[lang="en"] .prof-name-en { display: none; }
 
 /* Research trends ------------------------------------------------------- */
 .sub-title { margin: 44px 0 16px; font-size: 18px; font-weight: 600; }
-.row-note + .sub-title { margin-top: 0; }
+.row-note + .sub-title, .row-body > .sub-title:first-child { margin-top: 0; }
 .heat-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .heat { width: 100%; min-width: 560px; border-collapse: separate; border-spacing: 2px; font-size: 15px; font-variant-numeric: tabular-nums; }
 .heat th, .heat td { padding: 8px 10px; font-weight: 400; }
@@ -146,14 +146,8 @@ html[lang="en"] .prof-name-en { display: none; }
 .heat-legend { margin-top: 10px; font-size: 14px; color: var(--muted); }
 .sw { display: inline-block; width: 14px; height: 14px; margin: 0 4px 0 10px; vertical-align: -2px; }
 
-.trend-flow > li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
-.trend-flow > li:first-child { border-top: 1px solid var(--rule); }
-.flow-period { font-weight: 600; color: var(--crimson); font-variant-numeric: tabular-nums; }
-.flow-period .count { display: block; font-size: 14px; font-weight: 400; color: var(--muted); }
-.flow-head { font-weight: 600; }
-.kw-row { margin-top: 10px; }
 .kw-help { margin-bottom: 14px; font-size: 15px; color: var(--muted); }
-.kw-row, .kw-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.kw-list { display: flex; flex-wrap: wrap; gap: 8px; }
 .kw {
   padding: 5px 12px; border: 1px solid var(--rule); border-radius: 999px; background: var(--paper); cursor: pointer;
   font: 400 15px/1.4 var(--font); color: var(--ink);
@@ -266,8 +260,6 @@ html[lang="en"] .prof-name-en { display: none; }
   .heat thead th { font-size: 12.5px; white-space: normal; line-height: 1.3; }
   .heat tbody th { white-space: normal; padding-left: 0; font-size: 13.5px; line-height: 1.35; }
   .heat td { width: 15%; }
-  .trend-flow > li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
-  .flow-period .count { display: inline; margin-left: 8px; }
   .footer-links { margin-left: 0; }
 }
 

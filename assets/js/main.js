@@ -36,22 +36,6 @@
   ];
   var PERIODS = [[2004, 2010], [2011, 2015], [2016, 2020], [2021, 2026]];
 
-  /* 시기별 흐름 (키워드는 data.js의 kw 값) */
-  var FLOW = [
-    { ko: ["전자정부와 개인정보보호법 입법", "전자정부와 행정정보 공유, 개인정보보호법 제정 논의처럼 정보화 법제의 기본 틀을 다뤘습니다."],
-      en: ["E-government and the data protection act", "Groundwork for information law: e-government, sharing of administrative information and the debate over a data protection act."],
-      kw: ["전자정부", "행정정보 공유", "개인정보보호법"] },
-    { ko: ["인터넷 규제와 공공데이터", "인터넷 규제와 표현의 자유, 게임 규제, 공공데이터 개방이 주로 다룬 주제입니다."],
-      en: ["Internet regulation and public data", "Internet regulation and free expression, game regulation, and opening up public data."],
-      kw: ["인터넷 규제", "표현의 자유", "공공데이터"] },
-    { ko: ["디지털 수사와 개인정보 책임", "디지털 증거 압수수색과 피압수자의 참여권, 개인정보 유출에 따른 손해배상과 과징금 연구가 많았습니다. GDPR과 가명정보, 비식별화도 이때 다루기 시작했습니다."],
-      en: ["Digital investigation and liability for data", "Search and seizure of digital evidence and the right to take part in it, and damages and fines after data breaches. GDPR, pseudonymised data and de-identification also appear here."],
-      kw: ["디지털 증거", "압수수색", "참여권", "개인정보 유출", "손해배상", "비식별화"] },
-    { ko: ["인공지능과 가상자산", "인공지능 규제와 윤리에서 시작해 AI 거버넌스, AI 보안, AI 에이전트로 넓어졌습니다. 가상자산과 블록체인 논문이 늘었고, 2024년부터는 토픽모델링 같은 데이터 분석 방법도 씁니다."],
-      en: ["AI and virtual assets", "From AI regulation and ethics to AI governance, AI security and AI agents. More work on virtual assets and blockchain, and since 2024 data-driven methods such as topic modeling."],
-      kw: ["인공지능 규제", "AI 거버넌스", "AI 에이전트", "가상자산", "블록체인", "토픽모델링"] }
-  ];
-
   /* 키워드 영문 표기 (없으면 한국어 그대로 표시) */
   var KW_EN = {
     "디지털 증거": "digital evidence", "압수수색": "search and seizure", "개인정보보호": "data protection",
@@ -97,9 +81,7 @@
     "prof.tel": "Phone",
     "members.title": "Members",
     "trends.title": "Research trends",
-    "trends.note": "134 KCI-indexed journal papers (2004–2026) for which Prof. Kwon is the corresponding author, grouped by topic from their author keywords. A paper can fall under two topics.",
     "trends.heat": "Papers by topic",
-    "trends.flow": "How the work has shifted",
     "trends.kw": "Frequent keywords",
     "trends.kwHelp": "Select a keyword to see those papers under Publications below.",
     "pubs.title": "Publications",
@@ -230,13 +212,6 @@
     $("heatLegend").innerHTML = esc(ui("scale")) + " " + [["1–2", 1], ["3–5", 2], ["6–9", 3], ["10+", 4]].map(function (x) {
       return '<span class="sw h' + x[1] + '"></span>' + x[0];
     }).join(" ");
-
-    $("trendFlow").innerHTML = FLOW.map(function (f, i) {
-      var t = f[lang] || f.ko;
-      return '<li><p class="flow-period">' + pname[i] + '<span class="count">' + totals[i] + (unit || " papers") + "</span></p>" +
-        '<div><p class="flow-head">' + esc(t[0]) + "</p><p>" + esc(t[1]) + '</p><p class="kw-row">' +
-        f.kw.map(function (w) { return kwButton(w); }).join("") + "</p></div></li>";
-    }).join("");
 
     var kc = {};
     pubs.forEach(function (p) { (p.kw || []).forEach(function (w) { kc[w] = (kc[w] || 0) + 1; }); });

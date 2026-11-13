@@ -72,7 +72,6 @@
     "research.title": "Research areas",
     "prof.title": "Professor",
     "prof.name": "Hun Yeong Kwon",
-    "prof.statsNote": "Papers he published as corresponding author and theses he supervised at Korea University. Select a number to see the list.",
     "prof.topics": "Main research topics",
     "prof.role": "Professor, Graduate School of Information Security, Korea University<br />Head of the Department of Personal Information Protection",
     "members.title": "Members",
@@ -106,7 +105,6 @@
       empty: "등록된 항목이 없습니다.", membersEmpty: "구성원 명단을 준비하고 있습니다.",
       coadvisor: "공동지도", search: "제목, 저자, 학술지, 연도로 검색",
       play: "소개영상 재생", menuOpen: "메뉴 열기", menuClose: "메뉴 닫기", toggle: "English",
-      stat: { journal: "학술지 논문", conference: "국제학술대회 논문", phd: "박사학위 지도", ms: "석사학위 지도" },
       topic: "주제", total: "합계", papers: "논문 수", unit: "편", scale: "논문 수",
       group: { researcher: "연구원", phd: "박사과정", ms: "석사과정", alumni: "졸업생" },
       title: "사이버법정책연구실 | 고려대학교 정보보호대학원"
@@ -117,7 +115,6 @@
       empty: "Nothing listed yet.", membersEmpty: "The member list is being prepared.",
       coadvisor: "Co-advised", search: "Search titles, authors, journals or years",
       play: "Play the introduction video", menuOpen: "Open menu", menuClose: "Close menu", toggle: "한국어",
-      stat: { journal: "Journal papers", conference: "Conference papers", phd: "Ph.D. theses supervised", ms: "M.S. theses supervised" },
       topic: "Topic", total: "Total", papers: "Papers", unit: "", scale: "Papers",
       group: { researcher: "Researchers", phd: "Ph.D. students", ms: "M.S. students", alumni: "Alumni" },
       title: "Cyber Law and Policy Lab | Korea University"
@@ -170,15 +167,9 @@
     }).join("");
   }
 
-  /* Professor: 논문·지도 수와 많이 연구한 주제 (data.js에서 계산) -------- */
+  /* Professor: 많이 연구한 주제 (data.js에서 계산) ----------------------- */
   function renderProf() {
     var all = DATA.publications || [];
-    $("profStats").innerHTML = TYPES.map(function (t) {
-      var n = all.filter(function (p) { return p.type === t; }).length;
-      if (!n) return "";
-      return '<button type="button" class="stat" data-pubtype="' + t + '"><span class="stat-num">' + n +
-        '</span><span class="stat-label">' + esc(ui("stat")[t]) + "</span></button>";
-    }).join("");
     var tc = {};
     all.forEach(function (p) { (p.topics || []).forEach(function (t) { tc[t] = (tc[t] || 0) + 1; }); });
     $("profTopics").innerHTML = TOPICS.filter(function (t) { return tc[t.id]; })
@@ -251,13 +242,6 @@
       var t = TOPICS.filter(function (x) { return x.id === b.getAttribute("data-topic"); })[0];
       if (t) showPapers(t[lang] || t.ko);
       return;
-    }
-    b = e.target.closest("[data-pubtype]");
-    if (b) {
-      $("pubSearch").value = ""; query = "";
-      filter = b.getAttribute("data-pubtype"); limit = PAGE;
-      renderPubs();
-      $("publications").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     }
   });
 

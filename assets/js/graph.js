@@ -44,9 +44,8 @@
     var topicById = {};
     C.TOPICS.forEach(function (t) { topicById[t.id] = t; });
     (DATA.publications || []).forEach(function (p, i) {
-      if (!p.topics || !p.topics.length) return;
       var pn = node("p" + i, "paper", { p: p });
-      p.topics.forEach(function (t) { if (topicById[t]) link(pn, node("t:" + t, "topic", { t: topicById[t] })); });
+      C.topicsOf(p).forEach(function (t) { if (topicById[t]) link(pn, node("t:" + t, "topic", { t: topicById[t] })); });
       (p.kw || []).forEach(function (w) { link(pn, node("k:" + w, "kw", { w: w })); });
     });
     nodes.forEach(function (n) {

@@ -32,8 +32,11 @@
     { id: "blockchain", ko: "블록체인과 가상자산",       en: "Blockchain and virtual assets" },
     { id: "data",       ko: "데이터와 공공정보",         en: "Data and public information" },
     { id: "egov",       ko: "전자정부와 디지털 행정",    en: "E-government" },
-    { id: "industry",   ko: "산업과 소비자 규제",        en: "Industry and consumer regulation" }
+    { id: "industry",   ko: "산업과 소비자 규제",        en: "Industry and consumer regulation" },
+    { id: "other",      ko: "기타",                      en: "Other" }
   ];
+  // 주제가 붙지 않은 논문은 '기타'로 셉니다 (표의 합계가 전체 논문 수와 맞도록)
+  function topicsOf(p) { return p.topics && p.topics.length ? p.topics : ["other"]; }
   var PERIODS = [[2004, 2010], [2011, 2015], [2016, 2020], [2021, 2026]];
 
   /* 키워드 영문 표기 (없으면 한국어 그대로 표시) */
@@ -172,7 +175,7 @@
     var all = DATA.publications || [];
     var tc = {};
     all.forEach(function (p) { (p.topics || []).forEach(function (t) { tc[t] = (tc[t] || 0) + 1; }); });
-    $("profTopics").innerHTML = TOPICS.filter(function (t) { return tc[t.id]; })
+    $("profTopics").innerHTML = TOPICS.filter(function (t) { return tc[t.id] && t.id !== "other"; })
       .sort(function (a, b) { return tc[b.id] - tc[a.id]; }).slice(0, 5)
       .map(function (t) {
         return '<button type="button" class="kw" data-topic="' + t.id + '">' + esc(t[lang] || t.ko) +
@@ -189,7 +192,7 @@
   function heatLevel(n) { return n === 0 ? 0 : n <= 2 ? 1 : n <= 5 ? 2 : n <= 9 ? 3 : 4; }
 
   function renderTrends() {
-    var pubs = (DATA.publications || []).filter(function (p) { return p.topics && p.topics.length; });
+    var pubs = DATA.publications || [];
     $("trends").hidden = !pubs.length;
     var link = document.querySelector('.nav a[href="#trends"]');
     if (link) link.hidden = !pubs.length;
@@ -200,9 +203,11 @@
 
     var rows = TOPICS.map(function (t) {
       var c = PERIODS.map(function () { return 0; });
-      pubs.forEach(function (p) { if (p.topics.indexOf(t.id) !== -1) c[per(p.year)]++; });
+      pubs.forEach(function (p) { if (topicsOf(p).indexOf(t.id) !== -1) c[per(p.year)]++; });
       return { t: t, c: c, sum: c.reduce(function (a, b) { return a + b; }, 0) };
-    }).filter(function (r) { return r.sum; }).sort(function (a, b) { return b.sum - a.sum; });
+    }).filter(function (r) { return r.sum; }).sort(function (a, b) {
+      return (a.t.id === "other") - (b.t.id === "other") || b.sum - a.sum;
+    });
     var totals = PERIODS.map(function () { return 0; });
     pubs.forEach(function (p) { totals[per(p.year)]++; });
 
@@ -247,7 +252,7 @@
 
   // 연결망 그래프(graph.js)에서 쓰는 값
   window.CLP = {
-    TOPICS: TOPICS, KW_EN: KW_EN,
+    TOPICS: TOPICS, KW_EN: KW_EN, topicsOf: topicsOf,
     lang: function () { return lang; },
     kwLabel: function (w) { return kwLabel(w); },
     pick: function (v) { return pick(v); },
@@ -291,7 +296,7 @@
     var shown = all.filter(function (p) {
       if (filter !== "all" && p.type !== filter) return false;
       if (!q) return true;
-      if (topicHit) return (p.topics || []).indexOf(topicHit) !== -1;
+      if (topicHit) return topicsOf(p).indexOf(topicHit) !== -1;
       if (kwHit) return (p.kw || []).indexOf(kwHit) !== -1;
       return haystack(p).indexOf(q) !== -1;
     });

@@ -43,17 +43,18 @@
 
 ```js
 {"type": "journal", "year": 2026, "title": "논문 제목", "authors": "홍길동, 권헌영", "venue": "학술지명 제00권 제0호, pp.1–20", "link": "https://www.kci.go.kr/...artiId=ART...", "cor": "confirmed", "topics": ["privacy"], "kw": ["개인정보보호법", "가명정보"]},
-{"type": "conference", "year": 2026, "title": "Paper title", "authors": "Gil-dong Hong, Hun Yeong Kwon", "venue": "Conference or proceedings name", "link": "https://doi.org/...", "cor": "confirmed"},
-{"type": "ms", "year": 2026, "title": {"ko": "국문 제목", "en": "English title"}, "authors": "홍길동", "venue": {"ko": "고려대학교 정보보호대학원 정보보호학과 석사학위논문", "en": "M.S. Thesis, Graduate School of Information Security, Korea University"}, "link": "https://www.riss.kr/link?id=T..."},
+{"type": "conference", "year": 2026, "title": "Paper title", "authors": "Gil-dong Hong, Hun Yeong Kwon", "venue": "Conference or proceedings name", "link": "https://doi.org/...", "cor": "confirmed", "topics": ["ai"], "kw": ["AI 거버넌스"]},
+{"type": "ms", "year": 2026, "title": {"ko": "국문 제목", "en": "English title"}, "authors": "홍길동", "venue": {"ko": "고려대학교 정보보호대학원 정보보호학과 석사학위논문", "en": "M.S. Thesis, Graduate School of Information Security, Korea University"}, "link": "https://www.riss.kr/link?id=T...", "topics": ["crime"], "kw": ["디지털 증거", "압수수색"]},
 ```
 
 - 영문 이름 표기는 **Hun Yeong Kwon** (하이픈 없음).
 - 학과가 다르면 venue의 학과 이름을 실제 학과로 씁니다(예: 개인정보보호학과, 정보보호학과, 융합보안학과).
 - 박사는 `"Ph.D. Dissertation, ..."`, 석사는 `"M.S. Thesis, ..."`.
 
-### 연구 동향용 `topics`, `kw` (KCI 학술지 논문에만)
+### 연구 동향용 `topics`, `kw` (모든 항목에)
 
-KCI 논문에는 홈페이지 '연구 동향' 표와 키워드 연결망에 쓰이는 두 필드를 붙입니다.
+학술지·학술대회·학위논문 **모든 새 항목**에 홈페이지 '연구 동향' 표와 키워드 연결망에 쓰이는 두 필드를 붙입니다.
+저자 키워드가 없으면(학위논문, 해외 논문) 제목과 초록을 보고 정합니다. 어느 주제에도 맞지 않으면 `["other"]`(기타)를 씁니다.
 
 - `topics`: 아래 주제 코드 중 1~2개 (가장 중심 주제를 먼저)
 
@@ -69,6 +70,7 @@ KCI 논문에는 홈페이지 '연구 동향' 표와 키워드 연결망에 쓰�
   | data | 데이터와 공공정보 |
   | egov | 전자정부와 디지털 행정 |
   | industry | 산업과 소비자 규제 |
+  | other | 기타 (위 어디에도 맞지 않을 때만) |
 
 - `kw`: 표준 키워드 2~4개. 저자 키워드(국문·영문)를 보고 **아래 목록에 같은 뜻이 있으면 반드시 그 이름을 그대로** 씁니다. 목록에 없는 새 개념일 때만 짧은 한국어 명사구로 새 키워드를 만듭니다. 같은 뜻의 표현(예: personal information / 개인정보보호 / privacy protection)은 하나로 합칩니다.
 

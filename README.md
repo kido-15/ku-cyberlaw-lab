@@ -11,6 +11,8 @@ index.html            페이지 본문 (한국어 원문)
 assets/css/style.css  스타일
 assets/js/data.js     ★ 구성원 · 연구 성과 데이터 (여기만 고치면 됨)
 assets/js/main.js     연구 분야 목록, 영어 번역, 동작 스크립트
+assets/js/graph.js    연구 동향의 키워드 연결망 그래프
+assets/js/vendor/     d3 7.9.0 (그래프용 라이브러리, ISC 라이선스)
 assets/img/            교수 사진, 고려대 엠블럼, KU시큐리티 로고
 ```
 

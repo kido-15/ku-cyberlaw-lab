@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=20261113" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20261113b" />
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">본문 바로가기</a>
@@ -107,6 +107,21 @@
           <div class="heat-wrap" id="heatWrap"></div>
           <p class="heat-legend" id="heatLegend"></p>
 
+          <h3 class="sub-title" data-i18n="trends.net">키워드 연결망</h3>
+          <p class="kw-help" data-i18n="trends.netHelp">주제, 키워드, 논문을 선으로 이었습니다. 점을 끌어 옮기거나 확대할 수 있고, 주제나 키워드를 누르면 관련 논문을 볼 수 있습니다.</p>
+          <div class="net" id="net">
+            <canvas id="netCanvas" role="img" aria-label="주제, 키워드, 논문의 연결망"></canvas>
+            <div class="net-zoom">
+              <button type="button" id="netIn" aria-label="확대">+</button>
+              <button type="button" id="netOut" aria-label="축소">−</button>
+              <button type="button" id="netFit" data-i18n="trends.netFit">전체</button>
+            </div>
+          </div>
+          <div class="net-foot">
+            <p class="net-legend" id="netLegend"></p>
+            <div class="net-info" id="netInfo" aria-live="polite"></div>
+          </div>
+
           <h3 class="sub-title" data-i18n="trends.kw">많이 다룬 키워드</h3>
           <p class="kw-help" data-i18n="trends.kwHelp">키워드를 누르면 아래 주요 연구성과에서 해당 논문을 보여 줍니다.</p>
           <div class="kw-list" id="kwList"></div>
@@ -177,7 +192,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/data.js?v=20261113"></script>
-  <script src="assets/js/main.js?v=20261113"></script>
+  <script src="assets/js/data.js?v=20261113b"></script>
+  <script src="assets/js/main.js?v=20261113b"></script>
+  <script src="assets/js/graph.js?v=20261113b"></script>
 </body>
 </html>

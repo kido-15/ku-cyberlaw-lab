@@ -146,6 +146,27 @@ html[lang="en"] .prof-name-en { display: none; }
 .heat-legend { margin-top: 10px; font-size: 14px; color: var(--muted); }
 .sw { display: inline-block; width: 14px; height: 14px; margin: 0 4px 0 10px; vertical-align: -2px; }
 
+.net { position: relative; border: 1px solid var(--rule); background: var(--paper); }
+.net canvas { display: block; cursor: grab; }
+.net canvas:active { cursor: grabbing; }
+.net-zoom { position: absolute; right: 10px; top: 10px; display: flex; gap: 4px; }
+.net-zoom button {
+  min-width: 32px; height: 32px; padding: 0 8px; border: 1px solid var(--rule); border-radius: 2px;
+  background: rgba(255, 255, 255, .92); cursor: pointer; font: 500 15px var(--font); color: var(--ink);
+}
+.net-zoom button:hover { border-color: var(--crimson); color: var(--crimson); }
+.net-foot { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 32px; margin-top: 12px; align-items: start; }
+.net-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 14px; color: var(--muted); white-space: nowrap; }
+.net-dot { display: inline-block; width: 10px; height: 10px; margin-right: 6px; border-radius: 50%; vertical-align: 0; }
+.net-info { min-height: 72px; font-size: 15px; }
+.net-hint, .net-kind, .net-meta { color: var(--muted); }
+.net-kind { font-size: 14px; }
+.net-name { font-weight: 600; line-height: 1.5; }
+.net-name a { text-decoration: none; }
+.net-name a:hover { text-decoration: underline; }
+.net-meta { margin-top: 2px; font-size: 14px; line-height: 1.6; }
+.net-info .text-button { margin-top: 6px; font-size: 15px; }
+
 .kw-help { margin-bottom: 14px; font-size: 15px; color: var(--muted); }
 .kw-list { display: flex; flex-wrap: wrap; gap: 8px; }
 .kw {
@@ -255,6 +276,7 @@ html[lang="en"] .prof-name-en { display: none; }
   .pub-search { width: 100%; }
   .pub-year { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .facts > div { grid-template-columns: 72px minmax(0, 1fr); }
+  .net-foot { grid-template-columns: minmax(0, 1fr); }
   .heat { min-width: 0; font-size: 14px; }
   .heat th, .heat td { padding: 7px 4px; }
   .heat thead th { font-size: 12.5px; white-space: normal; line-height: 1.3; }

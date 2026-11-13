@@ -82,6 +82,9 @@
     "members.title": "Members",
     "trends.title": "Research trends",
     "trends.heat": "Papers by topic",
+    "trends.net": "Keyword network",
+    "trends.netHelp": "Topics, keywords and papers joined by lines. Drag a dot or zoom in; select a topic or keyword to see its papers.",
+    "trends.netFit": "Fit",
     "trends.kw": "Frequent keywords",
     "trends.kwHelp": "Select a keyword to see those papers under Publications below.",
     "pubs.title": "Publications",
@@ -219,15 +222,26 @@
     $("kwList").innerHTML = top.map(function (w) { return kwButton(w, kc[w]); }).join("");
   }
 
-  document.addEventListener("click", function (e) {
-    var b = e.target.closest("[data-kw]");
-    if (!b) return;
-    var w = kwLabel(b.getAttribute("data-kw"));
-    $("pubSearch").value = w;
-    query = w; filter = "all"; limit = PAGE;
+  // 키워드·주제 이름으로 주요 연구성과 목록을 거르고 그 위치로 이동합니다
+  function showPapers(label) {
+    $("pubSearch").value = label;
+    query = label; filter = "all"; limit = PAGE;
     renderPubs();
     $("publications").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-kw]");
+    if (b) showPapers(kwLabel(b.getAttribute("data-kw")));
   });
+
+  // 연결망 그래프(graph.js)에서 쓰는 값
+  window.CLP = {
+    TOPICS: TOPICS, KW_EN: KW_EN,
+    lang: function () { return lang; },
+    kwLabel: function (w) { return kwLabel(w); },
+    pick: function (v) { return pick(v); },
+    showPapers: showPapers
+  };
 
   /* Publications -------------------------------------------------------- */
   function haystack(p) {
@@ -254,6 +268,8 @@
 
     var q = query.trim().toLowerCase();
     // 검색어가 키워드 이름과 정확히 같으면 그 키워드가 붙은 논문만 보여 줍니다
+    var topicHit = null;
+    TOPICS.forEach(function (t) { if (t.ko.toLowerCase() === q || t.en.toLowerCase() === q) topicHit = t.id; });
     var kwHit = null;
     all.some(function (p) {
       return (p.kw || []).some(function (w) {
@@ -264,6 +280,7 @@
     var shown = all.filter(function (p) {
       if (filter !== "all" && p.type !== filter) return false;
       if (!q) return true;
+      if (topicHit) return (p.topics || []).indexOf(topicHit) !== -1;
       if (kwHit) return (p.kw || []).indexOf(kwHit) !== -1;
       return haystack(p).indexOf(q) !== -1;
     });
@@ -331,6 +348,7 @@
     renderTrends();
     renderPubs();
     try { localStorage.setItem("clp-lang", lang); } catch (_) {}
+    document.dispatchEvent(new CustomEvent("clp:lang"));
   }
   $("langToggle").addEventListener("click", function () { applyLang(lang === "ko" ? "en" : "ko"); });
 
